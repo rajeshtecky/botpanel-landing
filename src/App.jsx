@@ -498,32 +498,34 @@ const PLAN_DATA = [
   {
     id: 'starter', name: 'Starter', color: '#6366f1',
     prices: { IN: 2999, GB: 29, US: 35, AE: 129, AU: 55 },
-    desc: 'Perfect for small businesses just getting started on WhatsApp automation.',
+    desc: 'Perfect for small businesses getting started with WhatsApp AI automation.',
     features: [
-      { on: true,  text: '500 WhatsApp messages/month' },
+      { on: true,  text: 'Unlimited AI bot replies to customers' },
+      { on: true,  text: '1,000 free service conversations/mo (Meta)' },
+      { on: true,  text: '500 outbound credits (reminders & alerts)' },
       { on: true,  text: '20 products or listings' },
       { on: true,  text: '3 staff members' },
-      { on: true,  text: 'AI-powered WhatsApp bot' },
       { on: true,  text: 'Basic analytics' },
       { on: true,  text: 'Contacts & CRM' },
-      { on: false, text: 'Bulk campaigns' },
-      { on: false, text: 'Payment links (Razorpay)' },
+      { on: false, text: 'Bulk campaign broadcasts' },
+      { on: false, text: 'Razorpay payment links' },
       { on: false, text: 'Priority support' },
     ],
   },
   {
     id: 'growth', name: 'Growth', popular: true, color: '#4f46e5',
     prices: { IN: 5999, GB: 59, US: 69, AE: 249, AU: 109 },
-    desc: 'For growing businesses ready to scale with automation and campaigns.',
+    desc: 'For growing businesses ready to scale with campaigns and payments.',
     features: [
-      { on: true,  text: '2,000 WhatsApp messages/month' },
+      { on: true,  text: 'Unlimited AI bot replies to customers' },
+      { on: true,  text: '1,000 free service conversations/mo (Meta)' },
+      { on: true,  text: '2,000 outbound credits (campaigns & reminders)' },
       { on: true,  text: '100 products or listings' },
       { on: true,  text: '10 staff members' },
-      { on: true,  text: 'AI-powered WhatsApp bot' },
       { on: true,  text: 'Full analytics & reports' },
       { on: true,  text: 'Contacts & CRM' },
-      { on: true,  text: 'Bulk campaigns & broadcasts' },
-      { on: true,  text: 'Payment links (Razorpay)' },
+      { on: true,  text: 'Bulk campaign broadcasts' },
+      { on: true,  text: 'Razorpay payment links' },
       { on: false, text: 'Priority support' },
     ],
   },
@@ -532,14 +534,15 @@ const PLAN_DATA = [
     prices: { IN: 11999, GB: 119, US: 139, AE: 499, AU: 219 },
     desc: 'For high-volume businesses that need unlimited scale and dedicated support.',
     features: [
-      { on: true, text: '10,000 WhatsApp messages/month' },
+      { on: true, text: 'Unlimited AI bot replies to customers' },
+      { on: true, text: '1,000 free service conversations/mo (Meta)' },
+      { on: true, text: '10,000 outbound credits (campaigns & reminders)' },
       { on: true, text: 'Unlimited products & listings' },
       { on: true, text: 'Unlimited staff members' },
-      { on: true, text: 'AI-powered WhatsApp bot' },
       { on: true, text: 'Full analytics & reports' },
       { on: true, text: 'Contacts & CRM' },
-      { on: true, text: 'Bulk campaigns & broadcasts' },
-      { on: true, text: 'Payment links (Razorpay)' },
+      { on: true, text: 'Bulk campaign broadcasts' },
+      { on: true, text: 'Razorpay payment links' },
       { on: true, text: 'Priority support & onboarding' },
     ],
   },
@@ -607,7 +610,28 @@ function Pricing({ onSignup }) {
             );
           })}
         </div>
-        <p className="reveal" style={{ marginTop: 32, fontSize: 13, color: 'var(--sub)' }}>
+        <div className="reveal" style={{
+          marginTop: 36, background: 'linear-gradient(135deg, #dcfce7, #d1fae5)',
+          border: '1px solid #86efac', borderRadius: 16, padding: '20px 24px',
+          maxWidth: 680, marginLeft: 'auto', marginRight: 'auto', textAlign: 'left',
+        }}>
+          <div style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
+            <div style={{ fontSize: 28, flexShrink: 0 }}>💬</div>
+            <div>
+              <div style={{ fontWeight: 800, fontSize: 15, color: '#15803d', marginBottom: 6 }}>
+                How WhatsApp charges work — no surprises
+              </div>
+              <div style={{ fontSize: 13.5, color: '#166534', lineHeight: 1.7 }}>
+                <strong>AI bot replies to your customers are FREE.</strong> When a customer messages you first,
+                Meta gives every business <strong>1,000 free service conversations per month</strong> — our bot
+                replies within seconds at zero cost. <br />
+                <strong>Outbound credits</strong> (included in your plan) are only used when <em>you</em> proactively
+                send messages — bulk campaigns, appointment reminders, or payment links you initiate.
+              </div>
+            </div>
+          </div>
+        </div>
+        <p className="reveal" style={{ marginTop: 20, fontSize: 13, color: 'var(--sub)' }}>
           All prices exclusive of applicable taxes · Razorpay for India · International cards accepted
         </p>
       </div>
