@@ -502,7 +502,6 @@ const PLAN_DATA = [
     features: [
       { on: true,  text: 'Unlimited AI bot replies to customers' },
       { on: true,  text: '1,000 free service conversations/mo (Meta)' },
-      { on: true,  text: '500 outbound credits (reminders & alerts)' },
       { on: true,  text: '20 products or listings' },
       { on: true,  text: '3 staff members' },
       { on: true,  text: 'Basic analytics' },
@@ -519,7 +518,6 @@ const PLAN_DATA = [
     features: [
       { on: true,  text: 'Unlimited AI bot replies to customers' },
       { on: true,  text: '1,000 free service conversations/mo (Meta)' },
-      { on: true,  text: '2,000 outbound credits (campaigns & reminders)' },
       { on: true,  text: '100 products or listings' },
       { on: true,  text: '10 staff members' },
       { on: true,  text: 'Full analytics & reports' },
@@ -536,7 +534,6 @@ const PLAN_DATA = [
     features: [
       { on: true, text: 'Unlimited AI bot replies to customers' },
       { on: true, text: '1,000 free service conversations/mo (Meta)' },
-      { on: true, text: '10,000 outbound credits (campaigns & reminders)' },
       { on: true, text: 'Unlimited products & listings' },
       { on: true, text: 'Unlimited staff members' },
       { on: true, text: 'Full analytics & reports' },
@@ -622,11 +619,12 @@ function Pricing({ onSignup }) {
                 How WhatsApp charges work — no surprises
               </div>
               <div style={{ fontSize: 13.5, color: '#166534', lineHeight: 1.7 }}>
-                <strong>AI bot replies to your customers are FREE.</strong> When a customer messages you first,
-                Meta gives every business <strong>1,000 free service conversations per month</strong> — our bot
-                replies within seconds at zero cost. <br />
-                <strong>Outbound credits</strong> (included in your plan) are only used when <em>you</em> proactively
-                send messages — bulk campaigns, appointment reminders, or payment links you initiate.
+                <strong>Your plan covers the AI agent platform — nothing more.</strong> When customers message
+                you, Meta includes <strong>1,000 free service conversations per month</strong> and our bot replies
+                instantly at zero extra cost.<br />
+                Want to send bulk campaigns, appointment reminders, or payment links? Those use{' '}
+                <strong>outbound credits — recharged separately</strong> as a prepaid wallet, so you only pay for
+                what you actually send. No hidden inclusions, no surprises.
               </div>
             </div>
           </div>
