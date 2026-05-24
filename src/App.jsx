@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SignupModal from './SignupModal';
+import LoginModal from './LoginModal';
 
 /* ─── Scroll reveal hook ─── */
 function useReveal() {
@@ -13,7 +14,7 @@ function useReveal() {
 }
 
 /* ─── Navbar ─── */
-function Nav({ onSignup }) {
+function Nav({ onSignup, onLogin }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
@@ -34,7 +35,7 @@ function Nav({ onSignup }) {
         <a href="#faq">FAQ</a>
       </div>
       <div className="nav-cta">
-        <button className="btn btn-outline btn-sm" style={{ borderColor: 'rgba(255,255,255,.3)', color: '#fff' }}>Login</button>
+        <button className="btn btn-outline btn-sm" style={{ borderColor: 'rgba(255,255,255,.3)', color: '#fff' }} onClick={onLogin}>Login</button>
         <button className="btn btn-primary btn-sm" onClick={onSignup}>Get Started Free</button>
       </div>
       <button className="nav-toggle" onClick={() => setMenuOpen(!menuOpen)}>☰</button>
@@ -799,18 +800,25 @@ function Footer() {
 
 /* ─── App ─── */
 export default function App() {
-  const [showModal, setShowModal] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
+  const [showLogin,  setShowLogin]  = useState(false);
   const [defaultPlan, setDefaultPlan] = useState('growth');
   useReveal();
 
   function openSignup(plan) {
     setDefaultPlan(plan || 'growth');
-    setShowModal(true);
+    setShowSignup(true);
+    setShowLogin(false);
+  }
+
+  function openLogin() {
+    setShowLogin(true);
+    setShowSignup(false);
   }
 
   return (
     <>
-      <Nav onSignup={() => openSignup()} />
+      <Nav onSignup={() => openSignup()} onLogin={openLogin} />
       <Hero onSignup={() => openSignup()} />
       <ProofBar />
       <Problem />
@@ -822,7 +830,8 @@ export default function App() {
       <FAQ />
       <CTASection onSignup={openSignup} />
       <Footer />
-      {showModal && <SignupModal onClose={() => setShowModal(false)} defaultPlan={defaultPlan} />}
+      {showSignup && <SignupModal onClose={() => setShowSignup(false)} defaultPlan={defaultPlan} />}
+      {showLogin  && <LoginModal  onClose={() => setShowLogin(false)} />}
     </>
   );
 }
