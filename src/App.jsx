@@ -26,7 +26,7 @@ function Nav({ onSignup, onLogin }) {
     <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav-logo">
         <div className="nav-logo-icon">💬</div>
-        <span className="nav-logo-name">BotPanel</span>
+        <span className="nav-logo-name">Noeta</span>
       </div>
       <div className="nav-links">
         <a href="#features">Features</a>
@@ -85,7 +85,7 @@ function Hero({ onSignup }) {
               <span className="gradient-text">on WhatsApp.</span>
             </h1>
             <p className="lead hero-sub">
-              BotPanel's AI bot takes orders, books appointments, captures leads &
+              Noeta's AI bot takes orders, books appointments, captures leads &
               sends payment links — <strong style={{ color: '#fff' }}>24/7, fully automated</strong>.
               No coding. Live in 15 minutes.
             </p>
@@ -272,7 +272,7 @@ const INDUSTRIES = [
     id: 'salon', emoji: '💇', name: 'Salon & Spa',
     label: 'Salon / Spa',
     headline: 'Your WhatsApp books appointments 24/7 — even at midnight.',
-    sub: 'Stop spending your day on the phone confirming bookings. BotPanel handles scheduling, staff allocation, reminders and follow-ups so your team focuses on the actual service.',
+    sub: 'Stop spending your day on the phone confirming bookings. Noeta handles scheduling, staff allocation, reminders and follow-ups so your team focuses on the actual service.',
     pains: [
       'Staff spends 2-3 hours daily answering calls and booking appointments',
       'No-shows and last-minute cancellations with no warning',
@@ -295,7 +295,7 @@ const INDUSTRIES = [
     id: 'clinic', emoji: '🏥', name: 'Clinic',
     label: 'Clinic / Hospital',
     headline: 'Reduce no-shows by 60%. Let patients book, not call.',
-    sub: 'Patients prefer messaging over calling. BotPanel lets them book appointments with their doctor, get confirmed instantly and receive WhatsApp reminders — all without tying up your receptionist.',
+    sub: 'Patients prefer messaging over calling. Noeta lets them book appointments with their doctor, get confirmed instantly and receive WhatsApp reminders — all without tying up your receptionist.',
     pains: [
       'Receptionist overwhelmed with appointment calls all day',
       'Patients call 5 times to confirm a single appointment',
@@ -399,7 +399,7 @@ function Industries({ onSignup }) {
           <span className="label">By Industry</span>
           <h2 className="h2">Built for your specific business.<br />Not a generic chatbot.</h2>
           <p className="lead" style={{ maxWidth: 560, margin: '16px auto 0' }}>
-            Every industry has different problems. BotPanel solves the exact ones yours faces.
+            Every industry has different problems. Noeta solves the exact ones yours faces.
           </p>
         </div>
         <div className="industry-tabs reveal" style={{ marginTop: 48 }}>
@@ -641,7 +641,7 @@ function Pricing({ onSignup }) {
 const TESTIS = [
   {
     stars: '★★★★★',
-    text: '"We were paying ₹40,000/month to Zomato. After switching to BotPanel, our customers order directly on WhatsApp and we keep 100% of the revenue. Setup took less than 30 minutes."',
+    text: '"We were paying ₹40,000/month to Zomato. After switching to Noeta, our customers order directly on WhatsApp and we keep 100% of the revenue. Setup took less than 30 minutes."',
     name: 'Rajan Mehta', role: 'Owner, Spice Garden Restaurant, Mumbai',
     color: '#f97316', initials: 'RM',
   },
@@ -653,7 +653,7 @@ const TESTIS = [
   },
   {
     stars: '★★★★★',
-    text: '"I run a corporate gifting business and was losing B2B deals because I couldn\'t reply fast enough on WhatsApp. BotPanel bot handles initial inquiries and I only jump in for the final close."',
+    text: '"I run a corporate gifting business and was losing B2B deals because I couldn\'t reply fast enough on WhatsApp. Noeta bot handles initial inquiries and I only jump in for the final close."',
     name: 'Ahmed Al-Farsi', role: 'Director, Elite Corporate Gifts, Dubai',
     color: '#8b5cf6', initials: 'AA',
   },
@@ -671,7 +671,7 @@ const TESTIS = [
   },
   {
     stars: '★★★★★',
-    text: '"BotPanel\'s analytics showed us that 40% of our WhatsApp messages came in after 9 PM. Now the bot handles those and we wake up to confirmed orders. Game changer for our bakery."',
+    text: '"Noeta\'s analytics showed us that 40% of our WhatsApp messages came in after 9 PM. Now the bot handles those and we wake up to confirmed orders. Game changer for our bakery."',
     name: 'Lakshmi Reddy', role: 'Owner, Sweet Bloom Bakery, Chennai',
     color: '#f59e0b', initials: 'LR',
   },
@@ -682,7 +682,7 @@ function Testimonials() {
     <section className="section section-alt" id="testimonials">
       <div className="container text-center">
         <span className="label">Customer Stories</span>
-        <h2 className="h2 reveal">Businesses across 5 countries<br />trust BotPanel</h2>
+        <h2 className="h2 reveal">Businesses across 5 countries<br />trust Noeta</h2>
         <div className="testimonials-grid">
           {TESTIS.map(t => (
             <div key={t.name} className="testimonial-card reveal">
@@ -706,11 +706,11 @@ function Testimonials() {
 /* ─── FAQ ─── */
 const FAQS = [
   { q: 'How long does setup take?', a: 'Most businesses are live within 15–30 minutes. You connect your WhatsApp number via the official Meta Business API, add your products or services, and your bot is ready. We guide you step by step.' },
-  { q: 'Do I need a WhatsApp Business API account?', a: 'Yes — BotPanel uses the official WhatsApp Business API (not the regular app). We\'ll guide you through the application process, which typically takes 1–3 business days for approval. We\'ll help you every step of the way.' },
+  { q: 'Do I need a WhatsApp Business API account?', a: 'Yes — Noeta uses the official WhatsApp Business API (not the regular app). We\'ll guide you through the application process, which typically takes 1–3 business days for approval. We\'ll help you every step of the way.' },
   { q: 'Will this work for my existing WhatsApp number?', a: 'Yes, you can use your existing WhatsApp Business number. Note: once connected to the API, the number can no longer be used with the regular WhatsApp app on a phone — but you\'ll have a full web dashboard instead.' },
-  { q: 'What countries does BotPanel support?', a: 'BotPanel works globally. We\'re particularly popular in India 🇮🇳, United Kingdom 🇬🇧, United States 🇺🇸, UAE 🇦🇪 and Australia 🇦🇺. Payments are supported in INR, GBP, USD, AED and AUD.' },
+  { q: 'What countries does Noeta support?', a: 'Noeta works globally. We\'re particularly popular in India 🇮🇳, United Kingdom 🇬🇧, United States 🇺🇸, UAE 🇦🇪 and Australia 🇦🇺. Payments are supported in INR, GBP, USD, AED and AUD.' },
   { q: 'How does the AI bot handle complex questions?', a: 'The bot is powered by Llama 3.3 70B (one of the most capable open-source AI models) and knows your specific products, prices, staff, and business details. For truly complex queries it can transfer to a human. It handles 90%+ of messages automatically.' },
-  { q: 'Is my customer data secure?', a: 'Yes. BotPanel uses Supabase with Row Level Security — your data is completely isolated from other businesses. We never share or sell customer data. All communication is encrypted in transit.' },
+  { q: 'Is my customer data secure?', a: 'Yes. Noeta uses Supabase with Row Level Security — your data is completely isolated from other businesses. We never share or sell customer data. All communication is encrypted in transit.' },
   { q: 'Can I try before I pay?', a: 'Yes — every plan comes with a 14-day free trial. No credit card required to start. You pay only after you\'ve seen the bot working for your business.' },
   { q: 'What happens when I hit my message limit?', a: 'You\'ll get an email notification at 80% usage. You can top up with additional message credits any time from the dashboard, or upgrade your plan. The bot never goes silent unexpectedly.' },
 ];
@@ -748,7 +748,7 @@ function CTASection({ onSignup }) {
           Your competitors are already<br />automating their WhatsApp.
         </h2>
         <p className="lead reveal" style={{ color: 'rgba(255,255,255,.65)', maxWidth: 520, margin: '0 auto 40px' }}>
-          Every day without BotPanel is revenue left on the table. Join 500+ businesses that never miss a WhatsApp message again.
+          Every day without Noeta is revenue left on the table. Join 500+ businesses that never miss a WhatsApp message again.
         </p>
         <div className="flex justify-center gap-4 flex-wrap reveal">
           <button className="btn btn-wa btn-lg" onClick={() => onSignup()}>
@@ -773,7 +773,7 @@ function Footer() {
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
               <div className="nav-logo-icon">💬</div>
-              <div className="footer-brand-name">BotPanel</div>
+              <div className="footer-brand-name">Noeta</div>
             </div>
             <p className="footer-brand-desc">
               WhatsApp AI automation platform for restaurants, salons, clinics, e-commerce stores and real estate agencies across India, UK, USA, UAE & Australia.
@@ -811,7 +811,7 @@ function Footer() {
         </div>
         <hr className="footer-divider" />
         <div className="footer-bottom">
-          <span className="footer-copy">© 2025 BotPanel. All rights reserved.</span>
+          <span className="footer-copy">© 2025 Noeta · Technology by DDC · All rights reserved.</span>
           <div className="footer-flags">🇮🇳 🇬🇧 🇺🇸 🇦🇪 🇦🇺</div>
           <span className="footer-copy">Powered by WhatsApp Business API · Razorpay · Supabase</span>
         </div>

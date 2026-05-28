@@ -82,7 +82,7 @@ export default function LoginModal({ onClose }) {
                   }}>💼</div>
                   <div>
                     <div style={{ fontWeight: 800, fontSize: 15 }}>Business Owner</div>
-                    <div style={{ fontSize: 13, color: 'var(--sub)', marginTop: 2 }}>Login to your BotPanel dashboard</div>
+                    <div style={{ fontSize: 13, color: 'var(--sub)', marginTop: 2 }}>Login to your Noeta dashboard</div>
                   </div>
                   <div style={{ marginLeft: 'auto', color: 'var(--sub)', fontSize: 18 }}>→</div>
                 </div>
@@ -140,7 +140,7 @@ export default function LoginModal({ onClose }) {
                 <div style={{ fontSize: 48, marginBottom: 16 }}>🤔</div>
                 <div className="modal-title">No account found</div>
                 <p style={{ fontSize: 14, color: 'var(--sub)', lineHeight: 1.7, marginBottom: 24 }}>
-                  We couldn't find a BotPanel account for <strong>{email}</strong>.<br /><br />
+                  We couldn't find a Noeta account for <strong>{email}</strong>.<br /><br />
                   If you just signed up, check your email for your dashboard link — it was sent to you automatically after payment.
                 </p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>

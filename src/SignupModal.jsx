@@ -107,7 +107,7 @@ export default function SignupModal({ onClose, defaultPlan }) {
           amount: data.amount,
           currency: data.currency,
           order_id: data.razorpay_order_id,
-          name: 'BotPanel',
+          name: 'Noeta',
           description: `${plan.name} Plan — Monthly`,
           prefill: { name: form.owner_name, email: form.email, contact: form.phone },
           theme: { color: '#4f46e5' },
@@ -135,7 +135,7 @@ export default function SignupModal({ onClose, defaultPlan }) {
               <div className="success-icon">🎉</div>
               <h2>You're in!</h2>
               <p>
-                Your BotPanel account is being set up. Check <strong>{form.email}</strong> for your
+                Your Noeta account is being set up. Check <strong>{form.email}</strong> for your
                 login credentials and WhatsApp setup guide within the next few minutes.
               </p>
               <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: 12, padding: '16px 20px', textAlign: 'left', marginBottom: 24 }}>
@@ -260,7 +260,7 @@ export default function SignupModal({ onClose, defaultPlan }) {
               <div style={{ background: 'var(--surf)', border: '1px solid var(--border)', borderRadius: 12, padding: 20, marginBottom: 24 }}>
                 <div style={{ fontSize: 13, color: 'var(--sub)', marginBottom: 12 }}>Order summary</div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-                  <span style={{ fontWeight: 600 }}>BotPanel {plan?.name}</span>
+                  <span style={{ fontWeight: 600 }}>Noeta {plan?.name}</span>
                   <span style={{ fontWeight: 800 }}>{sym}{price}/mo</span>
                 </div>
                 <div style={{ fontSize: 13, color: 'var(--sub)', marginBottom: 12 }}>{plan?.desc}</div>
