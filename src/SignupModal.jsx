@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-const BACKEND = import.meta.env.VITE_BACKEND_URL || 'https://botpanel-backend.onrender.com';
+const BACKEND = import.meta.env.VITE_BACKEND_URL || 'http://noeta-backend-prod.eba-3bts6smd.ap-south-1.elasticbeanstalk.com';
 
 const BIZ_TYPES = [
-  { value: 'ecommerce',  label: '🛍️ E-commerce / Corporate Gifts' },
+  { value: 'ecommerce',  label: '🛍️ E-commerce / Retail' },
   { value: 'restaurant', label: '🍽️ Restaurant / Food Delivery' },
   { value: 'salon',      label: '💇 Salon / Spa' },
   { value: 'clinic',     label: '🏥 Clinic / Hospital' },
@@ -21,26 +21,35 @@ const COUNTRIES = [
 
 const CURRENCY_SYMBOL = { IN: '₹', GB: '£', US: '$', AE: 'AED ', AU: 'A$', OTHER: '$' };
 
+// One-time setup fee per PLAN per currency. WAIVED on annual.
+const SETUP_FEE_BY_PLAN = {
+  starter: { IN: 5000,  GB: 49,  US: 59,  AE: 199, AU: 89,  OTHER: 59 },
+  growth:  { IN: 10000, GB: 99,  US: 119, AE: 399, AU: 179, OTHER: 119 },
+  premium: { IN: 15000, GB: 149, US: 179, AE: 599, AU: 269, OTHER: 179 },
+};
+const PERIOD_MONTHS = { monthly: 1, quarterly: 3, half_yearly: 6, annual: 10 };
+const PERIOD_LABELS = [['monthly','Monthly'],['quarterly','Quarterly'],['half_yearly','Half-Yearly'],['annual','Annual']];
+
 const PLANS = [
   {
     id: 'starter',
     name: 'Starter',
-    prices: { IN: 2999, GB: 29, US: 35, AE: 129, AU: 55, OTHER: 35 },
-    desc: '500 messages/mo · 20 products · 3 staff',
+    prices: { IN: 1499, GB: 15, US: 19, AE: 69, AU: 29, OTHER: 19 },
+    desc: 'AI sales agent · 30 chats/day · GST invoices',
     badge: null,
   },
   {
     id: 'growth',
     name: 'Growth',
-    prices: { IN: 5999, GB: 59, US: 69, AE: 249, AU: 109, OTHER: 69 },
-    desc: '2,000 messages/mo · 100 products · 10 staff · Campaigns',
+    prices: { IN: 3999, GB: 39, US: 50, AE: 179, AU: 75, OTHER: 50 },
+    desc: '100 chats/day · Multi-language · Campaigns · Follow-up',
     badge: 'Most Popular',
   },
   {
     id: 'premium',
     name: 'Premium',
-    prices: { IN: 11999, GB: 119, US: 139, AE: 499, AU: 219, OTHER: 139 },
-    desc: '10,000 messages/mo · Unlimited · Priority support',
+    prices: { IN: 6999, GB: 79, US: 99, AE: 359, AU: 149, OTHER: 99 },
+    desc: '200 chats/day · Full Sales Intelligence · Deal Coach',
     badge: null,
   },
 ];
@@ -63,14 +72,22 @@ export default function SignupModal({ onClose, defaultPlan }) {
     business_type: 'ecommerce', country: 'IN',
   });
   const [selectedPlan, setSelectedPlan] = useState(defaultPlan || 'growth');
+  const [billingPeriod, setBillingPeriod] = useState('annual'); // push annual
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
 
-  const country = form.country || 'IN';
-  const sym = CURRENCY_SYMBOL[country] || '$';
-  const plan = PLANS.find(p => p.id === selectedPlan);
-  const price = plan?.prices[country] ?? plan?.prices['IN'];
+  const country  = form.country || 'IN';
+  const sym      = CURRENCY_SYMBOL[country] || '$';
+  const plan     = PLANS.find(p => p.id === selectedPlan);
+  const monthly  = plan?.prices[country] ?? plan?.prices['IN'];
+  const months   = PERIOD_MONTHS[billingPeriod] || 1;
+  const price     = monthly;                                   // per-month list price
+  const planTotal = (monthly || 0) * months;                  // annual = 10mo (2 free)
+  const setupFee  = billingPeriod === 'annual'
+    ? 0
+    : (SETUP_FEE_BY_PLAN[selectedPlan]?.[country] ?? SETUP_FEE_BY_PLAN[selectedPlan]?.['OTHER'] ?? 0); // waived on annual
+  const totalDue  = planTotal + setupFee;
 
   function set(k, v) { setForm(f => ({ ...f, [k]: v })); }
 
@@ -86,7 +103,7 @@ export default function SignupModal({ onClose, defaultPlan }) {
       const res = await fetch(`${BACKEND}/api/public/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, plan: selectedPlan }),
+        body: JSON.stringify({ ...form, plan: selectedPlan, billing_period: billingPeriod }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Signup failed');
@@ -257,14 +274,45 @@ export default function SignupModal({ onClose, defaultPlan }) {
               <div className="modal-title">Complete your order</div>
               <div className="modal-sub">You'll be charged after your 14-day free trial ends.</div>
 
+              {/* Billing period — annual pushed (2 months free + setup waived) */}
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 16 }}>
+                {PERIOD_LABELS.map(([val, label]) => (
+                  <button key={val} type="button" onClick={() => setBillingPeriod(val)}
+                    style={{ padding: '7px 13px', borderRadius: 8, fontSize: 12.5, fontWeight: 700, cursor: 'pointer',
+                      border: billingPeriod === val ? '2px solid #4f46e5' : '1px solid var(--border)',
+                      background: billingPeriod === val ? '#eef2ff' : 'transparent',
+                      color: billingPeriod === val ? '#4f46e5' : 'var(--sub)' }}>
+                    {label}{val === 'annual' && ' · 2mo free + no setup'}
+                  </button>
+                ))}
+              </div>
+
               <div style={{ background: 'var(--surf)', border: '1px solid var(--border)', borderRadius: 12, padding: 20, marginBottom: 24 }}>
-                <div style={{ fontSize: 13, color: 'var(--sub)', marginBottom: 12 }}>Order summary</div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-                  <span style={{ fontWeight: 600 }}>Noeta {plan?.name}</span>
-                  <span style={{ fontWeight: 800 }}>{sym}{price}/mo</span>
+                <div style={{ fontSize: 13, color: 'var(--sub)', marginBottom: 12, fontWeight: 600 }}>Order summary</div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+                  <span style={{ fontWeight: 600 }}>Noeta {plan?.name} ({PERIOD_LABELS.find(([v]) => v === billingPeriod)?.[1]})</span>
+                  <span style={{ fontWeight: 700 }}>{sym}{planTotal}</span>
                 </div>
-                <div style={{ fontSize: 13, color: 'var(--sub)', marginBottom: 12 }}>{plan?.desc}</div>
-                <div style={{ borderTop: '1px solid var(--border)', paddingTop: 12 }}>
+                {billingPeriod === 'annual' && (
+                  <div style={{ fontSize: 12, color: '#15803d', marginBottom: 6, fontWeight: 600 }}>🎉 2 months free — just {sym}{price}/mo billed yearly</div>
+                )}
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, color: '#7c3aed' }}>
+                  <span style={{ fontWeight: 600 }}>One-time Setup Fee {billingPeriod === 'annual' && <span style={{ color: '#15803d' }}>(waived 🎉)</span>}</span>
+                  <span style={{ fontWeight: 700, color: billingPeriod === 'annual' ? 'var(--sub)' : '#7c3aed',
+                    textDecoration: billingPeriod === 'annual' ? 'line-through' : 'none' }}>
+                    {sym}{SETUP_FEE_BY_PLAN[selectedPlan]?.[country] ?? SETUP_FEE_BY_PLAN[selectedPlan]?.['OTHER'] ?? 0}
+                  </span>
+                </div>
+                <div style={{ fontSize: 12, color: 'var(--sub)', marginBottom: 12 }}>
+                  {billingPeriod === 'annual' ? 'Setup fee waived on annual. Renews yearly.' : 'Setup fee is charged once. Plan renews each period.'}
+                </div>
+                <div style={{ borderTop: '1px solid var(--border)', paddingTop: 12, marginBottom: 8 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 800, fontSize: 16 }}>
+                    <span>Total Due Today</span>
+                    <span style={{ color: '#4f46e5' }}>{sym}{totalDue}</span>
+                  </div>
+                </div>
+                <div style={{ borderTop: '1px solid var(--border)', paddingTop: 10 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12, color: 'var(--sub)' }}>
                     <span>Business</span><span>{form.business_name}</span>
                   </div>
@@ -282,7 +330,7 @@ export default function SignupModal({ onClose, defaultPlan }) {
 
               <button className="btn btn-primary w-full mt-2" style={{ justifyContent: 'center', fontSize: 16 }}
                 onClick={handlePay} disabled={loading}>
-                {loading ? 'Processing…' : `Pay ${sym}${price} & Activate`}
+                {loading ? 'Processing…' : `Pay ${sym}${totalDue} & Activate`}
               </button>
 
               <button className="btn btn-ghost w-full mt-4" style={{ justifyContent: 'center' }} onClick={() => setStep(2)}>← Change plan</button>
